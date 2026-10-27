@@ -6,9 +6,20 @@ const quoteForm = document.querySelector("#quote-form");
 const yearElement = document.querySelector("#current-year");
 const galleryDialog = document.querySelector(".gallery-lightbox");
 const galleryLinks = Array.from(document.querySelectorAll(".gallery-image-link"));
+const themeToggle = document.querySelector(".theme-toggle");
 
 if (yearElement) {
   yearElement.textContent = String(new Date().getFullYear());
+}
+
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    const isDarkMode = document.body.classList.toggle("dark-mode");
+    themeToggle.setAttribute("aria-pressed", String(isDarkMode));
+    themeToggle.setAttribute("aria-label", `Ativar modo ${isDarkMode ? "claro" : "escuro"}`);
+    themeToggle.querySelector(".theme-toggle-icon").textContent = isDarkMode ? "☀" : "☾";
+    themeToggle.querySelector(".theme-toggle-label").textContent = `Modo ${isDarkMode ? "claro" : "escuro"}`;
+  });
 }
 
 if (galleryDialog instanceof HTMLDialogElement && galleryLinks.length > 0) {
